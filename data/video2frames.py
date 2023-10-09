@@ -10,9 +10,10 @@ IN_PATH = 't'
 OUT_PATH = 'frames'
 #DIMS = 64
 DIMS = 256
-SKIP = 3
+IS_ANIME = True
+SKIP = 1 if IS_ANIME else 3
 CHECK_SIMILARITY = True
-MAX_SIMILARITY = 0.999
+MAX_SIMILARITY = 0.99 if IS_ANIME else 0.999
 
 def video_to_rgb(video_filename, out_dir, resize_shape):
     file_template = 'frame_{0:09d}.jpg'
