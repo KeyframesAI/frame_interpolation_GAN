@@ -4,13 +4,15 @@ import cv2
 from skimage import img_as_float
 from skimage.metrics import structural_similarity as ssim
 
-IN_PATH = 'mid'
+IN_PATH = 'kinetics'
 OUT_PATH = 'frames/kinetics'
 #DIMS = 64
 DIMS = 256
-SKIP = 3
+NAME_START_ID = 0
+IS_ANIME = False
+SKIP = 1 if IS_ANIME else 3
 CHECK_SIMILARITY = True
-MAX_SIMILARITY = 0.999
+MAX_SIMILARITY = 0.99 if IS_ANIME else 0.999
 
 def video_to_rgb(n, video_filename, out_dir, resize_shape):
     file_template = 'frame_{0:09d}.jpg'
@@ -70,7 +72,7 @@ if __name__ == '__main__':
 
     print('This can take an hour or two depending on dataset size')
     
-    n = 0
+    n = NAME_START_ID
     for video_filename in video_filenames:
         n = process_videofile(n, video_filename, video_path, rgb_out_path, file_extension)
 
